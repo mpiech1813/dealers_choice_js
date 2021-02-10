@@ -1,0 +1,19 @@
+ul#navBar {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: red;
+  border-bottom: 1px solid yellowgreen;
+  width: 100%;
+}
+
+#navBar a {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  font-size: larger;
+}
+
+body {
+}

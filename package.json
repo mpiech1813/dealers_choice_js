@@ -20,6 +20,7 @@
   "description": "",
   "dependencies": {
     "express": "^4.17.1",
+    "html-template-tag": "^3.2.0",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "sql-template-strings": "^2.2.2"
