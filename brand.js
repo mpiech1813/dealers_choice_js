@@ -6,12 +6,15 @@ module.exports = (brands) => {
     <html>
       <head>
         <title>Boxing Store</title>
-        <link />
+        <link rel='stylesheet' href='/style.css'/>
       </head>
       <body>
         ${navBar()}
-        <div>
+        <div id='title'>
           <h1>Boxing Gloves Store</h1>
+          <img src = '/${brands[0].brand}.png' class='img_brand'/>
+        </div>
+        <div class='content'>
           ${brands
             .map(
               (name) => `

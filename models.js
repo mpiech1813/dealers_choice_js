@@ -7,14 +7,25 @@ module.exports = (model) => {
     <html>
       <head>
         <title>Boxing Gloves Store</title>
-        <link />
+        <link rel='stylesheet' href='/style.css'/>
       </head>
       <body>
         ${navBar()}
-        <div>
+        <div id='title'>
+          <img src='/${model.brand_name}.png' class='img_brand'/>
+        </div>
+        <div class='specs'>
           <p>
-            Model Name: ${model.model} Colour: ${model.colour} Material Type:
-            ${model.material} Made by: ${model.brand_id}
+            Model Name: ${model.name} <br/>
+          </p>
+          <p>
+            Colour: ${model.colour} <br/>
+          </p>
+          <p>
+            Material Type: ${model.material} <br/>
+          </p>
+          <p>
+            Made by: ${model.brand_name} <br/>
           </p>
         </div>
       </body>

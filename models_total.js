@@ -6,24 +6,28 @@ module.exports = (models) => {
     <html>
       <head>
         <title>Boxing Store</title>
-        <link />
+        <link rel='stylesheet' href='/style.css'/>
       </head>
       <body>
       ${navBar()}
         <div>
-          <h1>Boxing Gloves Store</h1>
-          ${models
-            .map(
-              (name) =>
+          <div id='title'>
+            <h1>Boxing Gloves Store</h1>
+          </div>
+          <div class = 'content'>
+            ${models
+              .map(
+                (name) =>
+                  `
+                  <div class='model_name'>
+                    <p>
+                      <a href='/models/${name.id}'>${name.model}</a>
+                    </p>
+                  </div>
                 `
-                <div>
-                  <p>
-                    <a href='/models/${name.id}'>${name.model}</a>
-                  </p>
-                </div>
-              `
-            )
-            .join('')}
+              )
+              .join('')}
+            </div>
         </div>
       </body>
     </html>

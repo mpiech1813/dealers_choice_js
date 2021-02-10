@@ -11,19 +11,26 @@ module.exports = (brands) => {
       <body>
         ${navBar()}
         <div>
-          <h1>Boxing Gloves Store</h1>
-          <h2><a href="/models">All Gloves</a></h2>
-          ${brands
-            .map(
-              (name) => `
-              <div>
-                <p>
-                  <a href = '/brand/${name.id}'>${name.name}</a>
-                </p>
-              </div>
-            `
-            )
-            .join('')}
+          <div id='title'>
+            <h1>Boxing Gloves Store</h1>
+          </div>
+          <div class = 'content'>
+            <h2><a href="/models">All Gloves</a></h2>
+            ${brands
+              .map(
+                (name) => `
+                <div class='brand_name'>
+                  <a href = '/brand/${name.id}'>
+                    <img src = '/${name.name}.png'/>
+                  </a>
+                  <p>
+                    <a href = '/brand/${name.id}'>${name.name}</a>
+                  </p>
+                </div>
+              `
+              )
+              .join('')}
+          </div>
         </div>
       </body>
     </html>

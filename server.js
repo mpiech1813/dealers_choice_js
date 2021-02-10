@@ -55,7 +55,9 @@ app.get('/models/:id', async (req, res, next) => {
   try {
     const modelNum = req.params.id;
     let data = await client.query(
-      SQL`SELECT * FROM model WHERE id=${modelNum};`
+      SQL`SELECT mod.id AS modid, mod.model AS name, mod.colour AS colour, mod.material AS material, brd.name AS brand_name 
+      FROM model AS mod
+      JOIN brand AS brd ON mod.brand_id = brd.id WHERE mod.id=${modelNum};`
     );
     const model = data.rows[0];
     res.send(modelList(model)); //<== postDetails is HTML for particulat item
