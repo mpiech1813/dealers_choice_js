@@ -11,7 +11,6 @@ module.exports = (model) => {
     <body>
         <div>
         <p>
-            ${model}
             Model Name: ${model.model} 
             Colour: ${model.colour} 
             Material Type: ${model.material} 
