@@ -5,10 +5,10 @@ const app = express();
 const path = require('path');
 const client = new pg.Client('postgres://localhost/boxing_gloves'); //<== fill this out with the name of the database once it is created
 const brandList = require('./brands_total');
-const modelList = require('./models');
-const genModelList = require('./models_total');
 const SQL = require('sql-template-strings');
 const singleBrand = require('./brand');
+const genModelList = require('./models_total');
+const modelList = require('./models');
 
 client.connect();
 
@@ -37,30 +37,29 @@ app.get('/models', async (req, res, next) => {
   }
 });
 
-app.get('/brand/:id', async (req, res, next) => {
-  try {
-    const brandNum = req.params.id;
-    let data = await client.query(SQL`SELECT mod.id AS modid, mod.model AS name, mod.colour AS colour, mod.material AS material, brd.name AS brand
-    from model AS mod
-    JOIN brand AS brd ON mod.brand_id = brd.id
-    WHERE mod.brand_id = ${brandNum};`);
-    const brandView = data.rows;
-    res.send(singleBrand(brandView));
-  } catch (err) {
-    next(err);
-  }
-});
-
 app.get('/models/:id', async (req, res, next) => {
   try {
     const modelNum = req.params.id;
     let data = await client.query(
       SQL`SELECT mod.id AS modid, mod.model AS name, mod.colour AS colour, mod.material AS material, brd.name AS brand_name 
-      FROM model AS mod
-      JOIN brand AS brd ON mod.brand_id = brd.id WHERE mod.id=${modelNum};`
+        FROM model AS mod
+        JOIN brand AS brd ON mod.brand_id = brd.id WHERE mod.id = ${modelNum};`
     );
     const model = data.rows[0];
     res.send(modelList(model)); //<== postDetails is HTML for particulat item
+  } catch (err) {
+    next(err);
+  }
+});
+app.get('/brand/:id', async (req, res, next) => {
+  try {
+    const brandNum = req.params.id;
+    let data = await client.query(SQL`SELECT mod.id AS modid, mod.model AS name, mod.colour AS colour, mod.material AS material, brd.name AS brand
+      from model AS mod
+      JOIN brand AS brd ON mod.brand_id = brd.id
+      WHERE mod.brand_id = ${brandNum};`);
+    const brandView = data.rows;
+    res.send(singleBrand(brandView));
   } catch (err) {
     next(err);
   }
@@ -79,3 +78,4 @@ app.listen(PORT, () => {
 });
 
 //create nav bar to Express Router and Rest Principal 40:00
+// SQL to prevent sql injection
